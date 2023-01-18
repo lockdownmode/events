@@ -8,3 +8,54 @@ btn.addEventListener("click", () => {
   const rndCol = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
   document.body.style.backgroundColor = rndCol;
 });
+
+===
+btn.removeEventListener('click', changeBackground);
+===
+
+const controller = new AbortController();
+
+btn.addEventListener('click', () => {
+  const rndCol = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+  document.body.style.backgroundColor = rndCol;
+}, { signal: controller.signal }); // pass an AbortSignal to this handler
+
+===
+myElement.addEventListener('click', functionA);
+myElement.addEventListener('click', functionB);
+===
+
+const btn = document.querySelector('button');
+
+function random(number) {
+  return Math.floor(Math.random() * (number+1));
+}
+
+btn.onclick = () => {
+  const rndCol = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+  document.body.style.backgroundColor = rndCol;
+}
+---
+const btn = document.querySelector('button');
+
+function random(number) {
+  return Math.floor(Math.random() * (number+1));
+}
+
+function bgChange() {
+  const rndCol = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+  document.body.style.backgroundColor = rndCol;
+}
+
+btn.onclick = bgChange;
+===
+
+const buttons = document.querySelectorAll('button');
+
+for (const button of buttons) {
+  button.addEventListener('click', bgChange);
+}
+===
+
+
+
