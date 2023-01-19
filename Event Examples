@@ -10,9 +10,10 @@ btn.addEventListener("click", () => {
 });
 
 ===
-btn.removeEventListener('click', changeBackground);
-===
+Removing Listner
 
+btn.removeEventListener('click', changeBackground);
+---
 const controller = new AbortController();
 
 btn.addEventListener('click', () => {
@@ -56,6 +57,14 @@ for (const button of buttons) {
   button.addEventListener('click', bgChange);
 }
 ===
+Extra properties of Event Objects
+
+<input id="textBox" type="text" />
+<div id="output"></div>
+
+const textBox = document.querySelector("#textBox");
+const output = document.querySelector("#output");
+textBox.addEventListener('keydown', (event) => output.textContent = `You pressed "${event.key}".`);
 
 
 
